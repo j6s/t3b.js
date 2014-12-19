@@ -1,0 +1,27 @@
+{
+    "tags"      : {
+        "allowUnknownTags" : true
+    },
+    "plugins"   : ["plugins/markdown"],
+
+    "templates" : {
+        "cleverLinks"           : false,
+        "monospaceLinks"        : false,
+        "outputSourceFiles"     : true,
+        "outputSourcePath"      : true,
+        "systemName"            : "t3b",
+        "footer"                : "t3b by Johannes Hertenstein ~ thephpjo",
+        "copyright"             : "DocStrap Copyright © 2012-2014 The contributors to the JSDoc3 and DocStrap projects.",
+        "navType"               : "vertical",
+        "theme"                 : "flatly",
+        "linenums"              : true,
+        "collapseSymbols"       : false,
+        "inverseNav"            : true,
+        "highlightTutorialCode" : true,
+        "protocol": "fred://"
+    },
+    "markdown"  : {
+        "parser"   : "gfm",
+        "hardwrap" : true
+    }
+}

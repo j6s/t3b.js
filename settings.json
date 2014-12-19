@@ -1,0 +1,25 @@
+{
+    "server":   "chat.freenode.net",
+    "nick":     "t3b",
+    "channels": ["##j6s_testing"],
+    "commands": {
+        "!cache": {
+            "urls": [
+                "http://i.imgur.com/fA186Xf.jpg",
+                "http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-clear-cache-11.png"
+            ]
+        },
+        "!ter": {
+            "dir": "json/ter/",
+            "extkeyCombos": ["{{key}}", "typo3-ter/{{key}}", "tx_{{key}}", "typo3-ter/tx_{{key}}"],
+            "link": "http://typo3.org/extensions/repository/view/{{key}}",
+            "message": "{{key}} {{version}} by {{authorString}} {{url}}",
+            "files": {
+                "typo3ter.json": {
+                    "url": "http://composer.typo3.org/packages-TYPO3Extensions-archive.json",
+                    "path": ["packages"]
+                }
+            }
+        }
+    }
+}
