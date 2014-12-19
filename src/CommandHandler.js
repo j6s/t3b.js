@@ -69,7 +69,7 @@ CommandHandler.prototype = {
          *
          * @param msg
          */
-        "!ter": function(msg){
+        /*"!ter": function(msg){
             var settings = this.settings.commands["!ter"];
             var data = settings.data;
             var ext = S(msg.message).chompLeft('!ter').collapseWhitespace().s;
@@ -101,7 +101,7 @@ CommandHandler.prototype = {
                     }
                 }
             }
-        }
+        }*/
     },
 
     /**
@@ -110,7 +110,7 @@ CommandHandler.prototype = {
      * @property    {function}  !ter    Sets up the !ter command: loads the right json paths
      */
     initcmds: {
-        "!ter": function(){
+        /*"!ter": function(){
             var self = this;
             var json = Object.keys(this.settings.commands["!ter"].files);
             var dir = this.settings.commands["!ter"].dir;
@@ -121,7 +121,7 @@ CommandHandler.prototype = {
                 data = helpers.getPath(data,self.settings.commands["!ter"].files[filename].path);
                 self.settings.commands["!ter"].data[filename] = data;
             })
-        }
+        }*/
     },
 
     /**

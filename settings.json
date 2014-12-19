@@ -1,7 +1,7 @@
 {
     "server":   "chat.freenode.net",
     "nick":     "t3b",
-    "channels": ["##j6s_testing"],
+    "channels": ["#typo3"],
     "commands": {
         "!cache": {
             "urls": [

@@ -251,7 +251,7 @@ Helpers.getPath = function getPath(object, path){
  * @returns {*}
  */
 Helpers.getRandomElement = function getRandomElement(arr){
-    var num = Math.round(Math.random() * arr.length);
+    var num = Math.round(Math.random() * (arr.length - 1));
     return arr[num];
 };
 
