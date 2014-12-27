@@ -39,9 +39,10 @@ CommandHandler.prototype = {
      */
     init: function(){
         var self = this;
+        var expr;
 
         if(this.getSetting('commands.require.path')){
-            var expr = this.getSetting('commands.require.path');
+            expr = this.getSetting('commands.require.path');
             if(this.getSetting('commands.require.prependDirname')){
                 expr = __dirname + "/" + expr;
             }
@@ -52,6 +53,21 @@ CommandHandler.prototype = {
                     self.registerCommand(file);
                 });
             });
+        }
+
+        if(this.getSetting('handlers.require.path')){
+            expr = this.getSetting('handlers.require.path');
+            if(this.getSetting('handlers.require.prependDirname')){
+                expr = __dirname + "/" + expr;
+            }
+
+            glob(expr, function(err, files){
+                if(err) throw err;
+
+                files.forEach(function(file){
+                    self.registerHandler(require(file));
+                });
+            })
         }
     },
 

@@ -7,10 +7,6 @@ var client = new irc.Client(settings.server, settings.nick, {
 });
 var commandHandler = new CommandHandler(client,settings);
 
-commandHandler.registerHandler(function(msg){
-    console.log(msg);
-});
-
 client.addListener('message', function(from, to, message){
     commandHandler.handle({
         from: from,

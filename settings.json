@@ -28,5 +28,11 @@
             "path":             "commands/*Command.js",
             "prependDirname":   true
         }
+    },
+    "handlers": {
+        "require": {
+            "path":             "handlers/*.js",
+            "prependDirname":   true
+        }
     }
 }
