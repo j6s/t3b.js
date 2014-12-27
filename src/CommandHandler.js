@@ -1,6 +1,7 @@
 var S = require('string');
 var helpers = require('./helpers');
 var Promise = require('es6-promise').Promise;
+var glob = require('glob');
 
 /**
  * Handles incomming commands
@@ -22,113 +23,33 @@ function CommandHandler(client, settings){
 CommandHandler.prototype = {
 
     /**
-     * Constructor for the CommandHandler class,
-     * calls all of the init commands
-     * @returns {void}
-     */
-    init: function(){
-        for(var cmd in this.initcmds){
-            this.initcmds[cmd].apply(this);
-        }
-    },
-
-    /**
-     * All the commands live in this object.
-     *
-     * The keys are the strings used to invoke the command, the function is called with an object msg containing
-     * the following keys: from, to, message
-     *
-     * the commands are invoked with apply, so 'this' reffers to the CommandHandler object
-     *
-     * @type        {object}
-     * @property    {function} !cache
-     * @property    {function} !ping
-     * @property    {function} !ter
-     */
-    commands: {
-        /**
-         * Posts a random picture to the room about clearing the cache
-         * @param msg
-         */
-        "!cache": function(msg){
-            var urls = this.settings.commands["!cache"].urls;
-            this.client.say(msg.to, helpers.getRandomElement(urls));
-        },
-
-        /**
-         * sends the message 'pong' back, to test if the bot is still running
-         * @param msg
-         */
-        "!ping": function(msg){
-            this.client.say(msg.to, 'pong');
-        },
-
-        /**
-         * Searches for a extension in the TER.
-         * Make shure you downloaded the json files with grunt
-         *
-         * @param msg
-         */
-        /*"!ter": function(msg){
-            var settings = this.settings.commands["!ter"];
-            var data = settings.data;
-            var ext = S(msg.message).chompLeft('!ter').collapseWhitespace().s;
-            var keysToScan = [];
-
-            settings.extkeyCombos.forEach(function(combo){
-                keysToScan.push(S(combo).template({key: ext}).s);
-            });
-
-
-            for(var filename in data){
-                for(var i = 0; i < keysToScan.length; i++){
-                    if(typeof data[filename][keysToScan[i]] !== "undefined"){
-                        var versions = Object.keys(data[filename][keysToScan[i]]);
-                        var latest = data[filename][keysToScan[i]][versions[versions.length-1]]; // this is madness
-                        latest.key = ext;
-                        latest.url = S(settings.link).template(latest).s;
-                        latest.authorString = "";
-
-                        latest.authors.forEach(function(author){
-                            latest.authorString += S("{{name}} ~{{username}} <{{email}}>,").template(author).s;
-                        });
-
-                        var message = S(settings.message).template(latest).s;
-
-                        this.client.say(msg.to, message);
-
-                        console.log(latest);
-                    }
-                }
-            }
-        }*/
-    },
-
-    /**
-     * Commands ran on startup. If a command has to set something up, here is the time to do it
-     * @type        {object}
-     * @property    {function}  !ter    Sets up the !ter command: loads the right json paths
-     */
-    initcmds: {
-        /*"!ter": function(){
-            var self = this;
-            var json = Object.keys(this.settings.commands["!ter"].files);
-            var dir = this.settings.commands["!ter"].dir;
-            this.settings.commands["!ter"].data = {};
-
-            json.forEach(function(filename){
-                var data = require('../' + dir + filename);
-                data = helpers.getPath(data,self.settings.commands["!ter"].files[filename].path);
-                self.settings.commands["!ter"].data[filename] = data;
-            })
-        }*/
-    },
-
-    /**
      * Just some Handlers called on messages
      * @type {Array}
      */
     handlers: [],
+
+    /**
+     * Our Command objects live here
+     */
+    commands: [],
+
+    /**
+     * Constructor for the CommandHandler class,
+     * @returns {void}
+     */
+    init: function(){
+        var self = this;
+
+        glob(__dirname + '/commands/*Command.js', function(err, files){
+            if(err) throw err;
+
+            files.forEach(function(file){
+                var Class = require(file);
+                self.commands.push(new Class(self));
+            });
+        });
+    },
+
 
     /**
      * handles the commands in a message.
@@ -144,14 +65,16 @@ CommandHandler.prototype = {
      * @private
      */
     __handleCommands: function(msg){
-        var cmds = Object.keys(this.commands);
+        var self = this;
 
-        for(var i = 0; i < cmds.length; i++){
-            if(msg.message.indexOf(cmds[i]) === 0){
-                this.commands[cmds[i]].apply(this, [msg]);
+        for(var i = 0; i < this.commands.length; i++){
+            var command = this.commands[i];
+            if(command.match(msg)){
+                command.exec(msg);
                 return true;
             }
         }
+
         return false;
     },
 
@@ -234,6 +157,18 @@ CommandHandler.prototype = {
         }
 
         this.handlers.push(func);
+    },
+
+    /**
+     *
+     * @param {Array,string} path
+     */
+    getSetting: function(path){
+        if(typeof path === "string"){
+            path = path.split('.');
+        }
+
+        return helpers.getPath(this.settings,path);
     }
 };
 

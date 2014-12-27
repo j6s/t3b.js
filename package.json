@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "string": "^3.0.0",
     "es6-promise": "^2.0.1",
+    "glob": "^4.3.2",
+    "irc": "^0.3.7",
     "request": "^2.51.0",
-    "irc": "^0.3.7"
+    "string": "^3.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
