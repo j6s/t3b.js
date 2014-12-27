@@ -40,13 +40,19 @@ CommandHandler.prototype = {
     init: function(){
         var self = this;
 
-        glob(__dirname + '/commands/*Command.js', function(err, files){
-            if(err) throw err;
+        if(this.getSetting('commands.require.path')){
+            var expr = this.getSetting('commands.require.path');
+            if(this.getSetting('commands.require.prependDirname')){
+                expr = __dirname + "/" + expr;
+            }
 
-            files.forEach(function(file){
-                self.registerCommand(file);
+            glob(expr, function(err,files){
+                if(err) throw err;
+                files.forEach(function(file){
+                    self.registerCommand(file);
+                });
             });
-        });
+        }
     },
 
 

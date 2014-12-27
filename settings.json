@@ -23,6 +23,10 @@
                     "path": ["packages"]
                 }
             }
+        },
+        "require": {
+            "path":             "commands/*Command.js",
+            "prependDirname":   true
         }
     }
 }
