@@ -44,8 +44,7 @@ CommandHandler.prototype = {
             if(err) throw err;
 
             files.forEach(function(file){
-                var Class = require(file);
-                self.commands.push(new Class(self));
+                self.registerCommand(file);
             });
         });
     },
@@ -124,26 +123,47 @@ CommandHandler.prototype = {
      * Registers a "third Party" command
      *
      * @example
-     * // just echo back the message
-     * commandHandler.registerCommand('!echo', function(msg){
-     *      this.client.say(msg.to, msg.message);
-     * });
+     * commandHandler.registerCommand('src/commands/CacheCommand.js')
      *
-     * @param {string}   name   name of the command
-     * @param {function} func   function executed for the command.
-     *                          The function receives a message object containing the key from, to and message
-     *                          The function is invoked with 'apply', so 'this' reffers to the commandHandler instance
+     * @example
+     * var CacheCommand = require('src/commands/CacheCommand.js');
+     * commandHandler.registerCommand(CacheCommand);
+     *
+     * @example
+     * var CacheCommand = require('src/commands/CacheCommand.js');
+     * var cacheCommand = new CacheCommand(commandHandler);
+     * commandHandler.registerCommand(cacheCommand);
+     *
+     * @example
+     * commandHandler.registerCommand(null);
+     * // throws "Commands must implement match and exec functions, see src/commands/__stub"
+     *
+     * @param {object|string|function} clss     The command object or class.
+     *                                          If a string is given it requires the string as path and then creates a new object,
+     *                                          If function / class is given, it creates a new object,
+     *                                          If a object is given it uses that object
+     *
+     * @throws Exception if object does not implement match and exec functions
+     *
      * @returns {void}
      */
-    registerCommand: function(name, func){
-        if(typeof func !== "function"){
-            throw "argument func must be of type function";
+    registerCommand: function(clss){
+        // require the class, if it is a string
+        if(typeof clss === "string"){
+            clss = require(clss);
         }
-        if(typeof this.commands[name] !== "undefined"){
-            throw "command " + name + " was already registered";
+        // create new instance, if it is a function
+        if(typeof clss === "function"){
+            clss = new clss(this);
         }
 
-        this.commands[name] = func;
+        // check, if match and exec are implemented
+        if(typeof clss.match !== "function" || typeof clss.exec !== "function"){
+            throw "Commands must implement match and exec functions, see src/commands/__stub";
+        }
+
+        // finally, add it
+        this.commands.push(clss);
     },
 
     /**
