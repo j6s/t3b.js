@@ -29,7 +29,9 @@ ServiceHandler.prototype = {
         }
 
         if(this.settings.services.autoReRegister){
-            setInterval(this.reRegister, this.settings.services.autoReRegister)
+            setInterval(function(){
+                self.reRegister();
+            }, this.settings.services.autoReRegister)
         }
     },
 
