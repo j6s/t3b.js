@@ -2,6 +2,7 @@
     "server":   "chat.freenode.net",
     "nick":     "t3b",
     "channels": ["#typo3"],
+    "restart":  "0 0 */12 * * *",
     "commands": {
         "!cache": {
             "urls": [
