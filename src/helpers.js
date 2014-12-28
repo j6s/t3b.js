@@ -254,5 +254,26 @@ Helpers.getRandomElement = function getRandomElement(arr){
     return arr[num];
 };
 
+/**
+ *
+ * @param {object}   instance
+ * @param {string[]} functions
+ */
+Helpers.implementsFunctions = function implementsFunctions(instance, functions){
+    if(typeof instance !== "object"){
+        throw "instance must be of type object";
+    }
+    if(!(functions instanceof Array)){
+        throw "functions must be array of strings";
+    }
+
+    for(var i = 0; i < functions.length; i++){
+        if(typeof instance[functions[i]] !== "function"){
+            throw functions[i] + " must be implemented"
+        }
+    }
+    return true;
+};
+
 
 module.exports = Helpers;

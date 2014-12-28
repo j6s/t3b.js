@@ -9,7 +9,7 @@ var FeedParser = require('feedparser');
  * @param {object}      settings
  * @param {string}      settings.template
  * @param {string}      settings.feed
- * @param {number}      settings.interval
+ * @param {number}     [settings.interval]
  * @param {string[]}    settings.channels
  * @param {boolean}    [settings.register = true]
  * @param {boolean}    [settings.debug = false]
@@ -19,8 +19,8 @@ function RssPoster(client, settings){
     this.client = client;
     this.settings = helpers.parseSettings(
          settings,
-        {register: true, debug: false},
-        ['template', 'feed', 'interval', 'channels']);
+        {register: true, debug: false, interval: 900000},
+        ['template', 'feed', 'channels']);
 
     this.init();
 }

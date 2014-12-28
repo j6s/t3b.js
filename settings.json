@@ -1,4 +1,5 @@
 {
+    "debug":    true,
     "server":   "chat.freenode.net",
     "nick":     "t3b",
     "loginFile": "./login.json",
@@ -10,6 +11,7 @@
         "realName":     "#TYPO3 bot by @thephpjo - https://github.com/thephpjo/t3b.js"
     },
     "restart":  "0 0 */12 * * *",
+
     "commands": {
         "!cache": {
             "urls": [
@@ -45,15 +47,24 @@
             "prependDirname":   true
         }
     },
+
     "handlers": {
         "require": {
             "path":             "handlers/*.js",
             "prependDirname":   true
         }
     },
-    "rss": {
-        "feeds":    ["http://typo3.org/xml-feeds/rss.xml"],
-        "interval": 900000,
-        "template": "{{title}} - {{summary}} {{link}}"
+
+    "services": {
+        "autoReRegister": 300000,
+        "require": {
+            "path": "services/*Service.js",
+            "prependDirname":   true
+        },
+        "rss": {
+            "feeds":    ["http://typo3.org/xml-feeds/rss.xml"],
+            "interval": 900000,
+            "template": "{{title}} - {{summary}} {{link}}"
+        }
     }
 }
