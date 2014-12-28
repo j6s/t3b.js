@@ -1,5 +1,5 @@
 var tim = require('tinytim').tim;
-var helpers = require('./helpers.js');
+var helpers = require('../../helpers.js');
 var http = require('http');
 var FeedParser = require('feedparser');
 
