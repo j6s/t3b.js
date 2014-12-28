@@ -56,7 +56,7 @@
     },
 
     "services": {
-        "autoReRegister": 300000,
+        "autoReRegister": false,
         "require": {
             "path": "services/*Service.js",
             "prependDirname":   true
