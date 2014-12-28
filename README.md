@@ -8,8 +8,10 @@ Purpose
 
 The purpose of this bot is to make staying in the `#TYPO3` irc channel more enjoyable by adding simple features
 
-Commands
+Features
 ---
+
+### Commands
 Currently there only are a few commands:
 
 - `!cache`  Prints a link to a meme about clearing the cache (inpired by Akiii and Xatenev)
@@ -35,6 +37,9 @@ Currently there only are a few commands:
     !github thephpjo/t3b.js
         => t3b.js by thephpjo (JavaScript): 0 issues, 0 forks, 0 watchers - https://github.com/thephpjo/t3b.js (last updated 2014-12-28T01:22:23Z)
     ```
+    
+### Services
+- The RssService notifies users about new posts on the official typo3.org blog / news system
 
 TODO
 ---
