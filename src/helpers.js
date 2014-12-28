@@ -55,7 +55,9 @@ Helpers.parseSettings = function parseSettings(settings, defaults, required) {
     defaults = defaults || {};
 
     for(var s in defaults){
-        settings[s] = settings[s] || defaults[s];
+        if(typeof settings[s] === "undefined"){
+            settings[s] = defaults[s];
+        }
     }
 
     for(var i = 0; i < required.length; i++){
