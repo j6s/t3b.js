@@ -9,8 +9,10 @@
     "forever-monitor": "^1.5.2",
     "glob": "^4.3.2",
     "irc": "^0.3.7",
+    "octonode": "^0.6.12",
     "request": "^2.51.0",
-    "string": "^3.0.0"
+    "string": "^3.0.0",
+    "tinytim": "^0.1.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

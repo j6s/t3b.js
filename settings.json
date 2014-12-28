@@ -29,6 +29,14 @@
                 }
             }
         },
+        "!github": {
+            "templates": {
+                "user":     "{{login}}: {{name}} ({{company}}) - repos: {{public_repos}}, gists: {{public_gists}} - {{html_url}}",
+                "project":  "{{name}} by {{owner.login}} ({{language}}): {{open_issues}} issues, {{forks}} forks, {{watchers}} watchers - {{html_url}} (last updated {{updated_at}})",
+                "404": "{{arg}} was not found"
+            }
+        },
+
         "require": {
             "path":             "commands/*Command.js",
             "prependDirname":   true
