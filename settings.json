@@ -2,9 +2,7 @@
     "server":   "chat.freenode.net",
     "nick":     "t3b",
     "clientSettings": {
-        "channels": ["#typo3"],
-        "userName": "t3b",
-        "realName": "#TYPO3 bot by @thephpjo - https://github.com/thephpjo/t3b.js"
+        "channels": ["##j6stest"]
     },
     "restart":  "0 0 */12 * * *",
     "commands": {
@@ -47,5 +45,10 @@
             "path":             "handlers/*.js",
             "prependDirname":   true
         }
+    },
+    "rss": {
+        "feeds":    ["http://typo3.org/xml-feeds/rss.xml"],
+        "interval": 900000,
+        "template": "{{title}} - {{summary}} {{link}}"
     }
 }
