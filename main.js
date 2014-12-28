@@ -10,9 +10,7 @@ var CommandHandler =    require('./src/CommandHandler.js');
 /**
  * Creates client and commandHandler objects and register all the important tasks
  */
-var client = new irc.Client(settings.server, settings.nick, {
-    channels: settings.channels
-});
+var client = new irc.Client(settings.server, settings.nick, settings.clientSettings);
 var commandHandler = new CommandHandler(client,settings);
 
 client.addListener('message', function(from, to, message){
