@@ -6,7 +6,6 @@
 var settings =          require('./settings.json');
 var irc =               require('irc');
 var CommandHandler =    require('./src/CommandHandler.js');
-var process =           require('process');
 
 /**
  * Creates client and commandHandler objects and register all the important tasks
