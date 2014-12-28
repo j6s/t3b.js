@@ -6,7 +6,6 @@ var helpers = require('../helpers.js');
  * @constructor
  */
 function CacheCommand(commandHandler){
-    console.log(commandHandler.getSetting('commands'));
     this.commandHandler = commandHandler;
 }
 

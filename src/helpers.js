@@ -51,7 +51,6 @@ function Helpers() {
  * @returns {object}    The proccessed settings
  */
 Helpers.parseSettings = function parseSettings(settings, defaults, required) {
-    console.log(settings);
     required = required || [];
     defaults = defaults || {};
 

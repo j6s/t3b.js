@@ -1,8 +1,13 @@
 {
     "server":   "chat.freenode.net",
     "nick":     "t3b",
+    "loginFile": "./login.json",
     "clientSettings": {
-        "channels": ["##j6stest"]
+        "channels":    ["##j6stest"],
+        "debug":        false,
+        "autoConnect":  false,
+        "userName":     "t3b",
+        "realName":     "#TYPO3 bot by @thephpjo - https://github.com/thephpjo/t3b.js"
     },
     "restart":  "0 0 */12 * * *",
     "commands": {

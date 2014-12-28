@@ -66,11 +66,10 @@ RssPoster.prototype = {
      * @private
      */
     __send: function(item){
-        this.__log('__send');
-
         var self = this;
         var message = tim(self.settings.template, item);
-        console.log(message);
+
+        this.__log('__send', message);
 
         this.settings.channels.forEach(function(channel){
             self.client.say(channel, message);
