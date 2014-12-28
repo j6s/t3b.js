@@ -36,7 +36,10 @@ RssService.prototype = {
      * __You should save the id of the interval in order to unregister it later__
      */
     register: function () {
-        this.interval = setInterval(this.exec, this.settings.interval);
+        var self = this;
+        this.interval = setInterval(function(){
+            self.exec();
+        }, this.settings.interval);
     },
 
     /**

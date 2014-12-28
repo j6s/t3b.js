@@ -81,8 +81,11 @@ RssPoster.prototype = {
      */
     registerInterval: function(){
         this.__log('registerInterval');
+        var self = this;
 
-        setInterval(this.check, this.settings.interval);
+        setInterval(function(){
+            self.check();
+        }, this.settings.interval);
     },
 
     /**
