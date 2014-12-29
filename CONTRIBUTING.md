@@ -46,7 +46,7 @@ Services
 ---
 Services do not depend on messages being received - they can be used to implement recurring or background tasks, that 
 are triggered by information from the outside rather than messages. An example is the RssService, that checks a RSS feed
-every x minutes and posts to the chatroom, if something new is received
+every x minutes and posts to the chatroom, if something new is received.
 
 ### Adding a Service
 To add a service, simply create a file in `src/services/` that ends with `...Service.js`. That file should export a class

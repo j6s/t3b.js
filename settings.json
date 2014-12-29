@@ -10,7 +10,7 @@
         "userName":     "t3b",
         "realName":     "#TYPO3 bot by @thephpjo - https://github.com/thephpjo/t3b.js"
     },
-    "restart":  "0 0 */12 * * *",
+    "restart":  14400000,
 
     "commands": {
         "!cache": {

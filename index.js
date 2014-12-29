@@ -21,13 +21,6 @@ child.on("restart", function(){
     console.log("restarting");
 });
 
-/**
- * Register CronJobs to do regular things like restarting the bot
- */
-new CronJob({
-    cronTime: settings.restart,
-    onTick: function(){
-        child.start(true);
-    },
-    start: true
-});
+setTimeout(function(){
+    child.start(true);
+}, settings.restart);
