@@ -60,6 +60,7 @@ client.connect(0, function () {
         })
     });
 
+
     /**
      * Initiates the serviceHandler
      */

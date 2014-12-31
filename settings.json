@@ -65,6 +65,9 @@
             "feeds":    ["http://typo3.org/xml-feeds/rss.xml"],
             "interval": 900000,
             "template": "{{title}} - {{summary}} {{link}}"
+        },
+        "ping": {
+            "interval": 300000
         }
     }
 }
