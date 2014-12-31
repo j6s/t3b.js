@@ -3,7 +3,7 @@
  * runnning. If the connection is down, the bot will shut down and be restarted by forever
  *
  * @see https://github.com/martynsmith/node-irc/issues/76
- * @param serviceHandler
+ * @param {ServiceHandler} serviceHandler
  * @constructor
  */
 function PingService(serviceHandler){
@@ -48,7 +48,10 @@ PingService.prototype = {
         }
 
         // just an example using 15minutes
-        this.interval = setInterval(this.exec, this.settings.services.ping.interval);
+        var self = this;
+        this.interval = setInterval(function(){
+            self.exec();
+        }, this.settings.services.ping.interval);
 
         // ping once on register
         this.exec();
