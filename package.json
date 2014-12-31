@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "es6-promise": "^2.0.1",
+    "externalip": "^1.0.0",
     "feedparser": "^0.19.2",
     "forever-monitor": "^1.5.2",
     "glob": "^4.3.2",

@@ -27,6 +27,12 @@ if (fs.existsSync(settings.loginFile)) {
  * Creates the client and logs the user in
  */
 var client = new irc.Client(settings.server, settings.nick, settings.clientSettings);
+
+client.on('error', function(err){
+    console.error(err);
+    process.exit(1);
+});
+
 client.connect(0, function () {
     console.log("successfully connected");
 
