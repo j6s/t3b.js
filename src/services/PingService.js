@@ -47,7 +47,6 @@ PingService.prototype = {
             this.client.addListener(c, this.callbacks[c]);
         }
 
-        // just an example using 15minutes
         var self = this;
         this.interval = setInterval(function(){
             self.exec();

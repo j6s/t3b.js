@@ -64,7 +64,6 @@ ServiceHandler.prototype = {
 
     /**
      * Logs all the things
-     * @private
      */
     __log: function(){
         var args = [];

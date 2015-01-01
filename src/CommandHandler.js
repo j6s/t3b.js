@@ -38,6 +38,7 @@ CommandHandler.prototype = {
      * @returns {void}
      */
     init: function(){
+        this.__log('init');
         var self = this;
         var expr;
 
@@ -91,6 +92,8 @@ CommandHandler.prototype = {
         for(var i = 0; i < this.commands.length; i++){
             var command = this.commands[i];
             if(command.match(msg)){
+                self.__log(command.name);
+
                 command.exec(msg);
                 return true;
             }
@@ -170,6 +173,8 @@ CommandHandler.prototype = {
      * @returns {void}
      */
     registerCommand: function(clss){
+        this.__log('registerCommand', clss);
+
         // require the class, if it is a string
         if(typeof clss === "string"){
             clss = require(clss);
@@ -194,6 +199,8 @@ CommandHandler.prototype = {
      * @param func
      */
     registerHandler: function(func){
+        this.__log('registerHandler', func);
+
         if(typeof func !== "function"){
             throw "argument func must be of type function";
         }
@@ -211,6 +218,22 @@ CommandHandler.prototype = {
         }
 
         return helpers.getPath(this.settings,path);
+    },
+
+    /**
+     * logs all the things
+     * @param {...} [arguments]
+     */
+    __log: function(){
+        var args = [];
+        for(var a in arguments){
+            args.push(arguments[a]);
+        }
+        args.unshift('CommandHandler');
+
+        if(this.settings.debug){
+            console.log.apply(console, args);
+        }
     }
 };
 

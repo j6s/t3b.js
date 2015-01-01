@@ -16,6 +16,11 @@ function LmgtfyCommand(commandHandler){
 }
 
 LmgtfyCommand.prototype = {
+    /**
+     * @type {string}
+     */
+    name: 'LmgtfyCommand',
+
     CMD: '!lmgtfy',
 
     /**
@@ -47,7 +52,10 @@ LmgtfyCommand.prototype = {
         var self = this;
 
         tinyurl(arg).then(function(url){
+            self.commandHandler.__log(self.name, url);
             self.commandHandler.client.say(msg.to, url);
+        }, function(err){
+            self.commandHandler.__log(self.name, JSON.stringify(err));
         });
     }
 };

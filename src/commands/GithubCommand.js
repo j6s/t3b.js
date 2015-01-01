@@ -18,6 +18,12 @@ function GithubCommand(commandHandler){
 }
 
 GithubCommand.prototype = {
+
+    /**
+     * @type {string}
+     */
+    name: 'GithubCommand',
+
     /**
      * Whether or not a message matches the command.
      * Returns true, if a message matches, false if not.
@@ -44,9 +50,7 @@ GithubCommand.prototype = {
         switch(parseInt(err.statusCode)){
             case 404:
             default:
-                var template = this.commandHandler.getSetting('commands.!github.templates.404');
-                template = tim(template, {arg: msg.arg});
-                this.commandHandler.client.say(msg.to, template);
+                this.__sendTemplate(msg.to, 'commands.!github.templates.404', msg);
         }
     },
 
@@ -62,33 +66,38 @@ GithubCommand.prototype = {
         var self = this;
         msg.arg = S(msg.message).chompLeft('!github').collapseWhitespace().s;
 
-        if(msg.arg.indexOf('/') > -1){
-            // it is a project
-            this.github.get('/repos/' + msg.arg, {}, function(err, status, body){
-                if(err){
-                    self.__handlerErr(err, msg);
-                    return;
-                }
+        var prefix;
+        var templatepath = 'commands.!github.templates.';
 
-                var template = self.commandHandler.getSetting('commands.!github.templates.project');
-                template = tim(template, body);
-
-                self.commandHandler.client.say(msg.to, template);
-                console.log(body.owner);
-            });
+        // switching the api commands depending on how the argument is formatted
+        if(msg.arg.indexOf('/') > -1) {
+            self.commandHandler.__log(self.name, 'searching for project', msg.arg);
+            prefix =        '/repos/';
+            templatepath += 'project';
         } else {
-            // it is a user
-            this.github.get('/users/' + msg.arg, {}, function(err, status, body, headers){
-                if(err) {
-                    self.__handlerErr(err, msg);
-                }
-
-                var template = self.commandHandler.getSetting('commands.!github.templates.user');
-                template = tim(template,body);
-
-                self.commandHandler.client.say(msg.to, template);
-            });
+            self.commandHandler.__log(self.name, 'searching for user', msg.arg);
+            prefix =        '/users/';
+            templatepath += 'user';
         }
+
+        this.github.get(prefix + msg.arg, {}, function(err,status,body){
+            if(err){
+                self.commandHandler.__log(self.name, err);
+                self.__handlerErr(err, msg);
+                return;
+            }
+
+            self.__sendTemplate(msg.to, templatepath, body);
+        });
+    },
+
+    __sendTemplate: function(to, templatename, args){
+        this.commandHandler.__log(this.name, '__sendTemplate',  to, templatename, '(args surpressed)');
+        var template = this.commandHandler.getSetting(templatename);
+        template = tim(template, args);
+
+        this.commandHandler.__log(this.name, 'sendTemplate', to, template);
+        this.commandHandler.client.say(to, template);
     }
 };
 

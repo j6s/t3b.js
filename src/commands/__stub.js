@@ -14,6 +14,12 @@ function StubCommand(commandHandler){
 
 StubCommand.prototype = {
     /**
+     * Name of the command, used for logging
+     * @type {string}
+     */
+    name: '',
+
+    /**
      * Whether or not a message matches the command.
      * Returns true, if a message matches, false if not.
      * Typically you would check the sent message for a keyword at the beginning (like "!cache")

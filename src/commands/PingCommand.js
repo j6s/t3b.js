@@ -9,6 +9,8 @@ function PingCommand(commandHandler){
 }
 
 PingCommand.prototype = {
+    name: 'PingCommand',
+
     /**
      * Whether or not a message matches the command.
      * Returns true, if a message matches, false if not.
