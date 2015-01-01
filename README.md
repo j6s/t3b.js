@@ -38,11 +38,18 @@ Currently there only are a few commands:
         => t3b.js by thephpjo (JavaScript): 0 issues, 0 forks, 0 watchers - https://github.com/thephpjo/t3b.js (last updated 2014-12-28T01:22:23Z)
     ```
     
+- `!lmgtfy` posts a link to lmgtfy with the given term
+    ```
+    !lmgtfy TYPO3
+        => tinyurl.com/abcdef (redirects to lmgtfy.com?q=TYPO3)
+    ``` 
+    
 ### Services
 - The RssService notifies users about new posts on the official typo3.org blog / news system
+- The PingService periodically sends the PING command to the IRC server to detect disconnects
 
 TODO
 ---
 
 - Implement a `!ter` Command, that gets information about an Extension from the TER
-- Implement a message on TYPO3 news (from the rss feed)
+- Implement a `!docs` Command, that searches the TYPO3 documentation
