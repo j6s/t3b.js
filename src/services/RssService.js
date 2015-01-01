@@ -16,6 +16,7 @@ function RssService(serviceHandler) {
         s.feed =        this.settings.feeds[i];
         s.register =    false;
         s.channels =    this.serviceHandler.settings.clientSettings.channels;
+        s.debug =       this.serviceHandler.settings.debug;
 
         this.rssPoster.push(new RssPoster(serviceHandler.client, s));
     }
