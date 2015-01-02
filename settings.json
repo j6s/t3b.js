@@ -10,7 +10,8 @@
         "userName":     "t3b",
         "realName":     "#TYPO3 bot by @thephpjo - https://github.com/thephpjo/t3b.js",
         "listenEvents": {
-            "message": ["from", "to", "message"]
+            "message":  ["from", "to", "message"],
+            "invite":   ["channel", "from", "message"]
         }
     },
     "restart":  14400000,
