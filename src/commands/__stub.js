@@ -28,6 +28,8 @@ StubCommand.prototype = {
      * @param {string} msg.to       The receiver of the message / the room the message was sent in
      * @param {string} msg.from     The sender of the message
      * @param {string} msg.message  The message itself
+     * @param {string} msg.type     The type of the message ("message", "invite", "kick", ...)
+     *
      * @return {boolean}
      *
      */

@@ -82,6 +82,7 @@ CommandHandler.prototype = {
      * @param {string} msg.to       The receiver of the message / the room the message was sent in
      * @param {string} msg.from     The sender of the message
      * @param {string} msg.message  The message itself
+     * @param {string} msg.type
      *
      * @returns {boolean}
      * @private
@@ -109,6 +110,7 @@ CommandHandler.prototype = {
      * @param {string} msg.to       The receiver of the message / the room the message was sent in
      * @param {string} msg.from     The sender of the message
      * @param {string} msg.message  The message itself
+     * @param {string} msg.type
      *
      * @returns {void}
      * @private
@@ -136,6 +138,7 @@ CommandHandler.prototype = {
      * @param {string} msg.to       The receiver of the message / the room the message was sent in
      * @param {string} msg.from     The sender of the message
      * @param {string} msg.message  The message itself
+     * @param {string} msg.type
      *
      * @returns {void}
      */

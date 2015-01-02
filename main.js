@@ -52,6 +52,18 @@ client.connect(0, function () {
     console.log("initiating command handler");
     var commandHandler = new CommandHandler(client, settings);
 
+    for(var i = 0; i < settings.clientSettings.listenEvents.length; i++){
+        var event = settings.clientSettings.listenEvents[i];
+        client.addListener(event, function(from, to, message){
+            commandHandler.handle({
+                from:       from,
+                to:         to,
+                message:    message,
+                type:       event
+            });
+        });
+    }
+
     client.addListener('message', function (from, to, message) {
         commandHandler.handle({
             from: from,

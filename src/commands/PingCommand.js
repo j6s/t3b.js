@@ -20,11 +20,13 @@ PingCommand.prototype = {
      * @param {string} msg.to       The receiver of the message / the room the message was sent in
      * @param {string} msg.from     The sender of the message
      * @param {string} msg.message  The message itself
+     * @param {string} msg.type
+     *
      * @return {boolean}
      *
      */
     match: function(msg){
-        return msg.message.indexOf('!ping') === 0;
+        return msg.type === "message" && msg.message.indexOf('!ping') === 0;
     },
 
     /**
