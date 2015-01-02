@@ -213,7 +213,7 @@ CommandHandler.prototype = {
 
     /**
      *
-     * @param {Array,string} path
+     * @param {Array|string} path
      */
     getSetting: function(path){
         if(typeof path === "string"){
@@ -225,7 +225,7 @@ CommandHandler.prototype = {
 
     /**
      * logs all the things
-     * @param {...} [arguments]
+     * @param {...string|Array|object} [arguments]
      */
     __log: function(){
         var args = [];

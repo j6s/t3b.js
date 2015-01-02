@@ -26,18 +26,6 @@
                 "http://cdn.meme.am/instances/500x/44512377.jpg"
             ]
         },
-        "!ter": {
-            "dir": "json/ter/",
-            "extkeyCombos": ["{{key}}", "typo3-ter/{{key}}", "tx_{{key}}", "typo3-ter/tx_{{key}}"],
-            "link": "http://typo3.org/extensions/repository/view/{{key}}",
-            "message": "{{key}} {{version}} by {{authorString}} {{url}}",
-            "files": {
-                "typo3ter.json": {
-                    "url": "http://composer.typo3.org/packages-TYPO3Extensions-archive.json",
-                    "path": ["packages"]
-                }
-            }
-        },
         "!github": {
             "templates": {
                 "user":     "{{login}}: {{name}} ({{company}}) - repos: {{public_repos}}, gists: {{public_gists}} - {{html_url}}",

@@ -6,43 +6,37 @@
  * Licensed under the MIT license.
  * https://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
  */
- 'use strict';
- module.exports = function(grunt) {
-     var settings = require('./settings.json');
-     var curl = (function(){
-         var curl = {};
-         var url = settings.commands["!ter"].files;
-         var dir = settings.commands["!ter"].dir;
-         for(var filename in url){
-             curl[dir + filename] = url[filename].url;
-         }
-         return curl;
-     })();
+'use strict';
+module.exports = function (grunt) {
+    var settings =  require('./settings.json');
+    var pack =      require('./package.json');
+    grunt.initConfig({
+        pkg: {
+            name: 'NIM'
+        },
 
-  grunt.initConfig({
-    pkg: {
-      name: 'NIM'
-    },
+        jsdoc: {
+            src: [
+                'index.js',
+                'src/*.js'
+            ],
+            options: {
+                destination: 'doc',
+                template: "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+                configure: "jsdoc.conf.json"
+            }
+        },
+        availabletasks: { tasks: {} }
+    });
 
-      jsdoc: {
-          src: [
-              'index.js',
-              'src/*.js'
-          ],
-          options: {
-              destination:  'doc',
-              template :    "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
-              configure :   "jsdoc.conf.json"
-          }
-      },
+    // load every grunt task in the devDependencies
+    // we don't do this by hand because we are lazy
+    for(var d in pack.devDependencies){
+        if(d.indexOf("grunt-") === 0){
+            grunt.loadNpmTasks(d);
+        }
+    }
 
-      curl: curl
-  });
-
-  grunt.loadNpmTasks('grunt-jsdoc');
-  grunt.loadNpmTasks('grunt-curl');
-
-
-  grunt.registerTask('default', ['less']);
-  grunt.registerTask('build', ['curl', 'jsdoc']);
+    grunt.registerTask('default',   'Executed, if grunt is called without a task',          ['availabletasks']);
+    grunt.registerTask('build',     'Builds documentation and prepares the project for use',['jsdoc']);
 };
