@@ -1,4 +1,5 @@
 var helpers = require('../helpers.js');
+var tim = require('tinytim').tim;
 
 /**
  * Posts a funny picture, if "!cache" is typed in the chat
@@ -44,12 +45,18 @@ CacheCommand.prototype = {
      *
      */
     exec: function(msg){
-        console.log(this.commandHandler.settings);
         var urls = this.commandHandler.getSetting('commands.!cache.urls');
         var url = helpers.getRandomElement(urls);
+        var template = this.commandHandler.getSetting('commands.!cache.template');
 
-        this.commandHandler.__log(this.name, url);
-        this.commandHandler.client.say(msg.to, url);
+        msg.message = msg.message.replace('!cache', '');
+        var message = tim(template, {
+            additional: msg.message,
+            url: url
+        });
+
+        this.commandHandler.__log(this.name, message);
+        this.commandHandler.client.say(msg.to, message);
     }
 };
 
