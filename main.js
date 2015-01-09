@@ -52,16 +52,19 @@ client.connect(0, function () {
     console.log("initiating command handler");
     var commandHandler = new CommandHandler(client, settings);
 
-    for(var event in settings.clientSettings.listenEvents){
+    // this is kind of hacky, i know
+    // but it creates a new scope, so the event variable
+    // is not lost due to time offset (because we are handling events here)
+    Object.keys(settings.clientSettings.listenEvents).forEach(function(event){
         client.addListener(event, function(){
-            var argNames = settings.clientSettings.listenEvents[event];
-            var msg = {type: event};
-            for(var i = 0; i < argNames.length; i++){
-                msg[argNames[i]] = arguments[i];
-            }
-            commandHandler.handle(msg);
-        });
-    }
+	    var argNames = settings.clientSettings.listenEvents[event];
+	    var msg = {type: event};
+	    for(var i = 0; i < argNames.length; i++){
+		msg[argNames[i]] = arguments[i]
+	    }
+	    commandHandler.handle(msg);
+	});
+    });
 
 
     /**
