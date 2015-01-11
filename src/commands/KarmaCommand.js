@@ -114,6 +114,17 @@ KarmaCommand.prototype = {
                 username = S(username).chompLeft("" + delta).collapseWhitespace().s;
             }
 
+            if(username == msg.from){
+                this.commandHandler.client.say(msg.to, tim(this.commandHandler.getSetting('commands.!karma.templateSelfPush'), {username: username}))
+
+                if(this.karma[username] > 0){
+                    this.karma[username] = 0;
+                }
+                this.__persists();
+
+                return;
+            }
+
             // if it is minus, everything is negative
             if(this.__is('minus', msg)){
                 delta *= -1;
