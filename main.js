@@ -46,11 +46,12 @@ client.connect(0, function () {
         console.log(from + ": " + message);
     });
 
-    if (login) {
-        // TODO enable / disable nickserv auth
+    if (settings.useNickservAuth === true && typeof login.irc === "object") {
         console.log("logging in");
         client.say('nickserv', tim('IDENTIFY {{nick}} {{password}}', login.irc));
         client.say('nickserv', tim('GHOST {{nick}} {{password}}', login.irc));
+    } else if (typeof login.irc !== "object"){
+        console.error("useNickServAuth is set to true but no irc login information was provided, not logging in");
     }
 
     /**

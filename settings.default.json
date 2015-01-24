@@ -1,8 +1,9 @@
 {
-    "debug":    true,
-    "server":   "chat.freenode.net",
-    "nick":     "t3b",
-    "loginFile": "./login.json",
+    "debug":            true,
+    "server":           "chat.freenode.net",
+    "nick":             "t3b",
+    "loginFile":        "./login.json",
+    "useNickservAuth":  true,
     "clientSettings": {
         "channels":    ["#typo3"],
         "debug":        false,
