@@ -4,7 +4,9 @@
     "nick":             "t3b",
     "loginFile":        "./login.json",
     "useNickservAuth":  true,
+    "useAuth":          false,
     "clientSettings": {
+        "sasl":         false,
         "channels":    ["#typo3"],
         "debug":        false,
         "autoConnect":  false,

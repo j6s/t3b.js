@@ -29,6 +29,12 @@ if (fs.existsSync(settings.loginFile)) {
 }
 
 
+// SASL support
+if (settings.useAuth === true){
+    settings.clientSettings = Helpers.parseSettings(settings.clientSettings, login.irc);
+}
+
+
 /**
  * Creates the client and logs the user in
  */
@@ -87,6 +93,6 @@ client.connect(0, function () {
  */
 client.addListener('error', function (message) {
     console.log('error: ', message);
-    process.exit(1);
+    // process.exit(1);
 });
 
