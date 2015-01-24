@@ -42,6 +42,7 @@
 
         "!karma": {
             "template": "{{username}}: {{karma}} karma, rank #{{rank}}",
+            "templateSelfPush": "Hey, {{username}} - don't push yourself. Your Karma was reset to 0",
             "file":     "karma.json"
         },
 
