@@ -15,7 +15,10 @@ var ServiceHandler = require('./src/ServiceHandler.js');
 var Helpers =        require('./src/helpers.js');
 
 // config files
-var settings =       require('./settings.json');
+var settings = {};
+if(fs.existsSync('./settings.json')){
+    settings = require('./settings.json');
+}
 settings = Helpers.parseSettings(settings, require('./settings.default.json'));
 
 var login;
