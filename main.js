@@ -18,9 +18,6 @@ var Helpers =        require('./src/helpers.js');
 var settings =       require('./settings.json');
 settings = Helpers.parseSettings(settings, require('./settings.default.json'));
 
-console.log(settings);
-process.exit(0);
-
 var login;
 if (fs.existsSync(settings.loginFile)) {
     login = require(settings.loginFile);
