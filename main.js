@@ -42,8 +42,8 @@ client.connect(0, function () {
 
     if (login) {
         console.log("logging in");
-        client.say('nickserv', tim('IDENTIFY {{nick}} {{password}}', login));
-        client.say('nickserv', tim('GHOST {{nick}} {{password}}', login));
+        client.say('nickserv', tim('IDENTIFY {{nick}} {{password}}', login.irc));
+        client.say('nickserv', tim('GHOST {{nick}} {{password}}', login.irc));
     }
 
     /**
