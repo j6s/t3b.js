@@ -1,0 +1,71 @@
+{
+    "debug":    true,
+    "server":   "chat.freenode.net",
+    "nick":     "t3b",
+    "loginFile": "./login.json",
+    "clientSettings": {
+        "channels":    ["#typo3"],
+        "debug":        false,
+        "autoConnect":  false,
+        "userName":     "t3b",
+        "realName":     "#TYPO3 bot by @thephpjo - https://github.com/thephpjo/t3b.js",
+        "listenEvents": {
+            "message":  ["from", "to", "message"],
+            "invite":   ["channel", "from", "message"]
+        }
+    },
+    "restart":  14400000,
+
+    "commands": {
+        "!cache": {
+            "urls": [
+                "http://i.imgur.com/fA186Xf.jpg",
+                "http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-clear-cache-11.png",
+                "http://i.imgur.com/W4VJ0sD.jpg",
+                "http://treasure.diylol.com/uploads/post/image/463404/resized_all-the-things-meme-generator-clear-all-the-caches-66ad82.jpg",
+                "http://cdn.meme.am/instances/500x/44512377.jpg"
+            ],
+            "template": "{{additional}} {{url}}"
+        },
+        "!github": {
+            "templates": {
+                "user":     "{{login}}: {{name}} ({{company}}) - repos: {{public_repos}}, gists: {{public_gists}} - {{html_url}}",
+                "project":  "{{name}} by {{owner.login}} ({{language}}): {{open_issues}} issues, {{forks}} forks, {{watchers}} watchers - {{html_url}} (last updated {{updated_at}})",
+                "404":      "{{arg}} was not found"
+            }
+        },
+
+        "!karma": {
+            "template": "{{username}}: {{karma}} karma, rank #{{rank}}",
+            "file":     "karma.json"
+        },
+
+        "require": {
+            "path":             "commands/*Command.js",
+            "prependDirname":   true
+        }
+    },
+
+    "handlers": {
+        "require": {
+            "path":             "handlers/*.js",
+            "prependDirname":   true
+        }
+    },
+
+    "services": {
+        "autoReRegister": false,
+        "require": {
+            "path": "services/*Service.js",
+            "prependDirname":   true
+        },
+        "rss": {
+            "feeds":    ["http://typo3.org/xml-feeds/rss.xml"],
+            "interval": 900000,
+            "template": "{{title}} - {{summary}} {{link}}"
+        },
+        "ping": {
+            "interval": 300000
+        }
+    }
+}

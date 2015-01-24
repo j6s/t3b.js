@@ -12,9 +12,15 @@ var fs = require('fs');
 // own modules
 var CommandHandler = require('./src/CommandHandler.js');
 var ServiceHandler = require('./src/ServiceHandler.js');
+var Helpers =        require('./src/helpers.js');
 
 // config files
-var settings = require('./settings.json');
+var settings =       require('./settings.json');
+settings = Helpers.parseSettings(settings, require('./settings.default.json'));
+
+console.log(settings);
+process.exit(0);
+
 var login;
 if (fs.existsSync(settings.loginFile)) {
     login = require(settings.loginFile);
@@ -41,6 +47,7 @@ client.connect(0, function () {
     });
 
     if (login) {
+        // TODO enable / disable nickserv auth
         console.log("logging in");
         client.say('nickserv', tim('IDENTIFY {{nick}} {{password}}', login.irc));
         client.say('nickserv', tim('GHOST {{nick}} {{password}}', login.irc));

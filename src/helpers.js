@@ -57,6 +57,11 @@ Helpers.parseSettings = function parseSettings(settings, defaults, required) {
     for(var s in defaults){
         if(typeof settings[s] === "undefined"){
             settings[s] = defaults[s];
+        } else if (
+            settings[s].constructor.name === "Object" &&
+            defaults[s].constructor.name === "Object"
+        ){
+            settings[s] = Helpers.parseSettings(settings[s], defaults[s]); // No required here
         }
     }
 
