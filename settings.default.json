@@ -15,7 +15,9 @@
         "listenEvents": {
             "message":  ["from", "to", "message"],
             "invite":   ["channel", "from", "message"]
-        }
+        },
+        "floodProtection":          true,
+        "floodProtectionDelay":     1000
     },
     "restart":  14400000,
 
