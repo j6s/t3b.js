@@ -17,6 +17,7 @@ function LinkCommand(commandHandler){
     this.client = commandHandler.client;
     this.settings = commandHandler.getSetting("commands.shit");
     this.options = this.settings.links;
+    global.log.debug(this.options);
 }
 
 LinkCommand.prototype = {
@@ -33,11 +34,17 @@ LinkCommand.prototype = {
             return msg.type === "message";
         }
 
+        global.log.debug(what, msg.message, msg.message.indexOf(what) === 0, this.is(msg, "msg"));
+
         if(typeof this.options[what] !== "undefined"){
-            return msg.message.indexOf(what) && this.is(msg, "msg");
+            return msg.message.indexOf(what) === 0 && this.is(msg, "msg");
         }
 
-        return this.is(msg, "!heavyshit") || this.is(msg, "!seriousshit");
+        // if nothing given, return if anything is something;
+        for(var cmd in this.options){
+            if(this.is(msg,cmd)) return true;
+        }
+        return false;
     },
 
     /**
@@ -68,8 +75,9 @@ LinkCommand.prototype = {
      */
     exec: function(msg){
         for(var cmd in this.options){
+            global.log.debug("-",cmd,this.is(msg, cmd));
             if(this.is(msg, cmd)){
-                console.log(cmd);
+                global.log.debug(cmd, this.options[cmd]);
                 var link = Helpers.getRandomElement(this.options[cmd]);
                 this.client.say(msg.to,link);
             }
