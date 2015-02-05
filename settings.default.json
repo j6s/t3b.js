@@ -34,8 +34,12 @@
                     "http://treasure.diylol.com/uploads/post/image/463404/resized_all-the-things-meme-generator-clear-all-the-caches-66ad82.jpg",
                     "http://cdn.meme.am/instances/500x/44512377.jpg"
                 ],
-                "!howtoask":  ["http://githubrsys.github.io/startingWithTYPO3/#howto-ask"],
-                "!howtostart": ["http://githubrsys.github.io/startingWithTYPO3/"]
+                "!howtoask":    ["http://githubrsys.github.io/startingWithTYPO3/#howto-ask"],
+                "!howtostart":  ["http://githubrsys.github.io/startingWithTYPO3/"],
+                "!wiki":        ["http://wiki.typo3.org"],
+                "!t3Download":  ["http://get.typo3.org"],
+                "!t3down":      ["http://get.typo3.org"],
+                "!chanLog":     ["http://riesvantwisk.com/cms/home/irc-logs/typo3-irc-log/2015.html"]
             }
         },
         "!github": {
