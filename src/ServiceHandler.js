@@ -36,7 +36,8 @@ ServiceHandler.prototype = {
     },
 
     registerService: function(clss){
-        this.__log('registerService', clss);
+        global.log.info("ServiceHandler.registerService", clss);
+
         // require the class, if it is a string
         if(typeof clss === "string"){
             clss = require(clss);
@@ -54,7 +55,7 @@ ServiceHandler.prototype = {
     },
 
     reRegister: function(){
-        this.__log('reRegister');
+        global.log.debug("ServiceHandler.reRegister");
 
         this.services.forEach(function(service){
             service.unregister();
@@ -73,7 +74,7 @@ ServiceHandler.prototype = {
         args.unshift('ServiceHandler');
 
         if(this.settings.debug){
-            console.log.apply(console, args);
+            global.log.debug.apply(global.log, args);
         }
     }
 };

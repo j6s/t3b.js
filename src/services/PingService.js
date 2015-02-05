@@ -19,10 +19,10 @@ PingService.prototype = {
      */
     callbacks: {
         ping: function(server){
-            console.log("ping", server);
+            global.log.debug("ping", server);
         },
         pong: function(server){
-            console.log("pong", server);
+            global.log.debug("pong", server);
         }
     },
 

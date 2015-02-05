@@ -38,6 +38,7 @@ PingCommand.prototype = {
      * @param {string} msg.message  The message itself
      */
     exec: function(msg){
+        global.log.debug("CommandHandler.PingCommand.exec");
         this.commandHandler.client.say(msg.to, 'pong');
     }
 };

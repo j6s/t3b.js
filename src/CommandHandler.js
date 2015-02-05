@@ -176,7 +176,7 @@ CommandHandler.prototype = {
      * @returns {void}
      */
     registerCommand: function(clss){
-        this.__log('registerCommand', clss);
+        global.log.info("CommandHandler.registerCommand",clss);
 
         // require the class, if it is a string
         if(typeof clss === "string"){
@@ -202,7 +202,7 @@ CommandHandler.prototype = {
      * @param func
      */
     registerHandler: function(func){
-        this.__log('registerHandler', func);
+        global.log.info("CommandHandler.registerHandler",func);
 
         if(typeof func !== "function"){
             throw "argument func must be of type function";
@@ -235,7 +235,7 @@ CommandHandler.prototype = {
         args.unshift('CommandHandler');
 
         if(this.settings.debug){
-            console.log.apply(console, args);
+            global.log.debug.apply(global.log, args);
         }
     }
 };

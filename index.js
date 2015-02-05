@@ -15,8 +15,9 @@ var child = new(forever.Monitor)('main.js', {
 child.start();
 
 ["start", "stop", "restart"].forEach(function(e){
-    console.log(e);
-    child.on(e, function(){console.log(e)});
+    child.on(e, function(){
+      console.log(e);
+    });
 });
 
 // restart every once in a while

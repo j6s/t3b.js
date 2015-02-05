@@ -2,6 +2,7 @@
  * THis is the main Script of the bot.
  * It is restarted every 12 hours (unless specified differently in settings.json -> restart)
  */
+
 // external modules
 var irc = require('irc');
 var tim = require('tinytim').tim;
@@ -28,6 +29,8 @@ if (fs.existsSync(settings.loginFile)) {
     login = false;
 }
 
+// global logger
+global.log = require('custom-logger').config({ level:settings.logLevel })
 
 // SASL support
 if (settings.useAuth === true){
@@ -41,29 +44,29 @@ if (settings.useAuth === true){
 var client = new irc.Client(settings.server, settings.nick, settings.clientSettings);
 
 client.on('error', function(err){
-    console.error(err);
+    global.log.error(err);
     process.exit(1);
 });
 
 client.connect(0, function () {
-    console.log("successfully connected");
+    global.log.info("successfully connected");
 
     client.on('pm', function (from, message) {
-        console.log(from + ": " + message);
+        global.log.debug(from + ": " + message);
     });
 
     if (settings.useNickservAuth === true && typeof login.irc === "object") {
-        console.log("logging in");
+        global.log.debug("logging in");
         client.say('nickserv', tim('IDENTIFY {{nick}} {{password}}', login.irc));
         client.say('nickserv', tim('GHOST {{nick}} {{password}}', login.irc));
     } else if (typeof login.irc !== "object"){
-        console.error("useNickServAuth is set to true but no irc login information was provided, not logging in");
+        global.log.error("useNickServAuth is set to true but no irc login information was provided, not logging in");
     }
 
     /**
      * Initiantes the commandHandler
      */
-    console.log("initiating command handler");
+    global.log.debug("initiating command handler");
     var commandHandler = new CommandHandler(client, settings);
 
     // this is kind of hacky, i know
@@ -71,20 +74,20 @@ client.connect(0, function () {
     // is not lost due to time offset (because we are handling events here)
     Object.keys(settings.clientSettings.listenEvents).forEach(function(event){
         client.addListener(event, function(){
-	    var argNames = settings.clientSettings.listenEvents[event];
-	    var msg = {type: event};
-	    for(var i = 0; i < argNames.length; i++){
-		msg[argNames[i]] = arguments[i]
-	    }
-	    commandHandler.handle(msg);
-	});
+          var argNames = settings.clientSettings.listenEvents[event];
+          var msg = {type: event};
+          for(var i = 0; i < argNames.length; i++){
+            msg[argNames[i]] = arguments[i]
+          }
+          commandHandler.handle(msg);
+        });
     });
 
 
     /**
      * Initiates the serviceHandler
      */
-        console.log("initiating serviceHandler");
+    global.log.debug("initiating serviceHandler");
     var serviceHandler = new ServiceHandler(client, settings);
 });
 
@@ -92,7 +95,6 @@ client.connect(0, function () {
  * Exit the script, if the client throws an error
  */
 client.addListener('error', function (message) {
-    console.log('error: ', message);
+    global.log.error('error: ', message);
     // process.exit(1);
 });
-

@@ -30,7 +30,7 @@ RssPoster.prototype = {
      * Initial actions
      */
     init: function(){
-        this.__log('init', this);
+      global.log.info("ServiceHandler.RssService.RssPoster.init");
 
         this.check();
         if(this.settings.register){
@@ -42,7 +42,7 @@ RssPoster.prototype = {
      * Checks a feed and executes __send if needed
      */
     check: function(){
-        this.__log('check');
+        global.log.debug("ServiceHandler.RssService.RssPoster.check");
 
         var self = this;
         http.get(this.settings.feed, function(res){
@@ -69,7 +69,7 @@ RssPoster.prototype = {
         var self = this;
         var message = tim(self.settings.template, item);
 
-        this.__log('__send', message);
+        global.log.info("ServiceHandler.RssService.RssPoster.__send", message);
 
         this.settings.channels.forEach(function(channel){
             self.client.say(channel, message);
@@ -80,7 +80,7 @@ RssPoster.prototype = {
      * Registers an interval on this.check
      */
     registerInterval: function(){
-        this.__log('registerInterval');
+      global.log.debug("ServiceHandler.RssService.RssPoster.registerInterval");
         var self = this;
 
         setInterval(function(){

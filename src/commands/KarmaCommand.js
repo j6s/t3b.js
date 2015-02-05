@@ -102,6 +102,7 @@ KarmaCommand.prototype = {
 
 
         if(this.__is('plus', msg) || this.__is('minus', msg)){
+            global.log.debug("CommandHandler.KarmaCommand.exec", "adding karma");
             var delta = 1;
 
             // we have the ability to add up to 5 karma at a time
@@ -115,6 +116,7 @@ KarmaCommand.prototype = {
             }
 
             if(username == msg.from){
+              global.log.info(username + " tried to push himself");
                 this.commandHandler.client.say(msg.to, tim(this.commandHandler.getSetting('commands.!karma.templateSelfPush'), {username: username}))
 
                 if(this.karma[username] > 0){
@@ -139,7 +141,7 @@ KarmaCommand.prototype = {
             if (username === '') {
                 // no username given, print top 5
                 var topFive = this.__getTopFive();
-                this.commandHandler.__log(this.name, "topFive", topFive);
+                global.log.debug("CommandHandler.KarmaCommand.exec", "topFive");
 
                 for(var i = 0; i < topFive.length; i++){
                     this.commandHandler.client.say(msg.to, this.__getMessage(topFive[i]));

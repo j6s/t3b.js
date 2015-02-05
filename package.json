@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "custom-logger": "^0.3.0",
     "es6-promise": "^2.0.1",
     "feedparser": "^0.19.2",
     "forever-monitor": "^1.5.2",
