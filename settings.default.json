@@ -33,7 +33,9 @@
                     "http://i.imgur.com/W4VJ0sD.jpg",
                     "http://treasure.diylol.com/uploads/post/image/463404/resized_all-the-things-meme-generator-clear-all-the-caches-66ad82.jpg",
                     "http://cdn.meme.am/instances/500x/44512377.jpg"
-                ]
+                ],
+                "!howtoask":  ["http://githubrsys.github.io/startingWithTYPO3/#howto-ask"],
+                "!howtostart": ["http://githubrsys.github.io/startingWithTYPO3/"]
             }
         },
         "!github": {
