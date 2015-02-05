@@ -15,7 +15,7 @@ var Helpers = require('../helpers.js');
 function LinkCommand(commandHandler){
     this.commandHandler = commandHandler;
     this.client = commandHandler.client;
-    this.settings = commandHandler.getSetting("commands.shit");
+    this.settings = commandHandler.getSetting("commands.link");
     this.options = this.settings.links;
     global.log.debug(this.options);
 }

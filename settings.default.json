@@ -23,7 +23,7 @@
     "restart":  14400000,
 
     "commands": {
-        "shit": {
+        "link": {
             "links": {
                 "!heavyshit":   ["https://www.youtube.com/watch?v=uxcnVDM4V60"],
                 "!seriousshit": ["https://www.youtube.com/watch?v=2Byz7eU8jF0"],
