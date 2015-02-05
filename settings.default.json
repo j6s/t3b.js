@@ -26,18 +26,15 @@
         "shit": {
             "links": {
                 "!heavyshit":   ["https://www.youtube.com/watch?v=uxcnVDM4V60"],
-                "!seriousshit": ["https://www.youtube.com/watch?v=2Byz7eU8jF0"]
+                "!seriousshit": ["https://www.youtube.com/watch?v=2Byz7eU8jF0"],
+                "!cache":       [
+                    "http://i.imgur.com/fA186Xf.jpg",
+                    "http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-clear-cache-11.png",
+                    "http://i.imgur.com/W4VJ0sD.jpg",
+                    "http://treasure.diylol.com/uploads/post/image/463404/resized_all-the-things-meme-generator-clear-all-the-caches-66ad82.jpg",
+                    "http://cdn.meme.am/instances/500x/44512377.jpg"
+                ]
             }
-        },
-        "!cache": {
-            "urls": [
-                "http://i.imgur.com/fA186Xf.jpg",
-                "http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-clear-cache-11.png",
-                "http://i.imgur.com/W4VJ0sD.jpg",
-                "http://treasure.diylol.com/uploads/post/image/463404/resized_all-the-things-meme-generator-clear-all-the-caches-66ad82.jpg",
-                "http://cdn.meme.am/instances/500x/44512377.jpg"
-            ],
-            "template": "{{additional}} {{url}}"
         },
         "!github": {
             "templates": {
