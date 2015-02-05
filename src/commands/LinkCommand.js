@@ -1,4 +1,4 @@
-var Helpers = require('../Helpers.js');
+var Helpers = require('../helpers.js');
 /**
  * Created by NIMIUS on 05.02.15.
  */
