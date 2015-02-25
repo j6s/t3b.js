@@ -17,7 +17,7 @@ var Helpers =        require('./src/helpers.js');
 
 // config files
 var settings = {};
-if(fs.existsSync('./settings.json')){
+if(fs.existsSync(__dirname + '/settings.json')){
     settings = require('./settings.json');
 }
 settings = Helpers.parseSettings(settings, require('./settings.default.json'));

@@ -250,7 +250,7 @@ KarmaCommand.prototype = {
      * @private
      */
     __persists: function(){
-        fs.writeFile(this.commandHandler.getSetting("commands.!karma.file"), JSON.stringify(this.karma), function(err){
+        fs.writeFile(__dirname + "/../../" + this.commandHandler.getSetting("commands.!karma.file"), JSON.stringify(this.karma), function(err){
             if(err){
                 throw err;
             }

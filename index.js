@@ -9,7 +9,7 @@ var settings =      require('./settings.json');
 /**
  * Create new forever monitor instance
  */
-var child = new(forever.Monitor)('main.js', {
+var child = new(forever.Monitor)(__dirname + '/main.js', {
     max: 100
 });
 child.start();
