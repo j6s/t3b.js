@@ -18,12 +18,12 @@ function KarmaCommand(commandHandler){
     this.commandHandler = commandHandler;
 
     // load karma from the persisted file
-    var path = commandHandler.getSetting('commands.!karma.file');
+    var path = __dirname + '/../../' + commandHandler.getSetting('commands.!karma.file');
     if(fs.existsSync(path)){
         // the filesystem function are relative to the main file
         // but require is relative to this file,
         // that's why have to add ../../
-        this.karma = require('../../' + path);
+        this.karma = require(path);
     } else {
         this.karma = {};
     }
